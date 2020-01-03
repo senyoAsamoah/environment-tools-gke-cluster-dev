@@ -1,0 +1,15 @@
+adminUser:
+  password: vault:tools-gke-cluster/adminUser:password
+  username: sqilet-admin
+docker:
+  email: senyo.asamoah@sqilet.com
+  password: vault:tools-gke-cluster/docker:password
+  url: https://gcr.io/sqilet/
+  username: jenkins-user
+enableDocker: true
+pipelineUser:
+  email: senyojnr@gmail.com
+  token: vault:tools-gke-cluster/pipelineUser:token
+  username: jenkins-bot
+prow:
+  hmacToken: vault:tools-gke-cluster/prow:hmacToken

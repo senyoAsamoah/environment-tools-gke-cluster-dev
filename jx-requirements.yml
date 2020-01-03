@@ -1,34 +1,73 @@
+autoUpdate:
+  enabled: false
+  schedule: ""
+bootConfigURL: https://github.com/sqilet/environment-tools-gke-cluster-dev
 cluster:
-  clusterName: ""
-  environmentGitOwner: ""
-  project: ""
+  clusterName: tools-gke-cluster
+  environmentGitOwner: sqilet
+  gitKind: github
+  gitName: github
+  gitServer: https://github.com
+  namespace: jx
+  project: sqilet-tools
   provider: gke
-  zone: ""
-gitops: true
+  registry: https://gcr.io/sqilet/
+  zone: us-west1
 environments:
-- key: dev
-- key: staging
-- key: production
+- ingress:
+    domain: 35.197.71.250.nip.io
+    externalDNS: false
+    namespaceSubDomain: -jx.
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: dev
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: staging
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: production
+gitops: true
 ingress:
-  domain: ""
+  domain: 35.197.71.250.nip.io
   externalDNS: false
+  namespaceSubDomain: -jx.
   tls:
     email: ""
     enabled: false
     production: false
-kaniko: true
-secretStorage: local
+repository: nexus
+secretStorage: vault
 storage:
+  backup:
+    enabled: false
+    url: ""
   logs:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://tools-gke-cluster-logs-ec831b3d-8f56-4dbc-8d8a-c2ba6590
   reports:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://tools-gke-cluster-reports-533c8dd7-8210-4c3e-ac35-f5f33
   repository:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://tools-gke-cluster-repository-76b6953c-89f7-4655-b98e-91
+vault: {}
+velero: {}
 versionStream:
-  ref: "master"
+  ref: v1.0.274
   url: https://github.com/jenkins-x/jenkins-x-versions.git
 webhook: prow
